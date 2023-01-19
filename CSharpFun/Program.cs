@@ -10,20 +10,10 @@ namespace TwoDiceMice
     {
         public static void Main(string[] args)
         {
-            //   string userName = "";
-            //  Console.Write("Please enter your name:");
-            //  userName = Console.ReadLine();
-
-            // PrintName(userName);
-                ArrayThang();
+                DiceRoller();
         }
 
-        private static void PrintName (string name)
-        {
-            Console.WriteLine("Hello " + name);
-        }
-
-        private static void ArrayThang()
+        private static void DiceRoller()
         {
             int numRolls = 0;
             Console.WriteLine("How many dice rolls would you like to simulate?");
@@ -32,7 +22,7 @@ namespace TwoDiceMice
             Random r = new Random();
             int[] rollResults = new int[12];
 
-            // Increase results holder (0-5) every time that number is rolled
+            // Add two random dice being "thrown" and place them in array (actually 0-11 with 11 being impossible)
             for (int i = 0; i < numRolls; i++)
             {
                 int numOne = r.Next(6);
@@ -44,17 +34,17 @@ namespace TwoDiceMice
             // Print the results with * indicating number of rolls (for now)
             Console.WriteLine("DICE ROLLING SIMULATION RESULTS\nEach \" * \"  " +
                 "represents 1% of the total number of rolls.\nTotal number of rolls = " + numRolls.ToString() + ".\n\n");
+            // Only iterating 0-10 because an '11' in this case can never be rolled
             for (int i = 0; i < 11; i++)
             {
                 decimal numAst = Math.Round((Convert.ToDecimal(rollResults[i]) / Convert.ToDecimal(numRolls)) * 100, 0);
                 Console.Write((i + 2).ToString() + ": ");
+                // Sub for-loop prints the asteriks representing each percent 
                 for (int j = 0; j < numAst; j++)
                 {
                     Console.Write("*");
                 }
                 Console.WriteLine("");
-//                Console.WriteLine(rollResults[i] + "   This represents " + 
-//                    numAst.ToString()  + " percent of the " + numRolls.ToString() + " total rolls");
             }
             Console.WriteLine("\n\nThank you for using the dice throwing simulator. Goodbye!");
         }
